@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ajout d'idée
+{% endblock %}
+
+{% block bodyForm %}
+
+    <p> Formulaire d'idée</p>
+
+    {{ form_start(monFormulaireIdee) }}
+    {{ form_widget(monFormulaireIdee) }}
+    <button>Envoyer</button>
+    {{ form_end(monFormulaireIdee) }}
+
+
+
+{% endblock %}

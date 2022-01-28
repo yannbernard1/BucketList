@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    List
+{% endblock %}
+
+{% block bodyList %}
+
+    <div>
+    {% if touteLaListe %}
+        {% for laListe in touteLaListe %}
+                <a href="{{ path('wish_detail', {'id': laListe.id}) }}">
+                    {{ laListe.title }} - {{ laListe.dateCreated | date("d-m-Y H:i") }}
+                </a>
+            <br>
+        {% endfor %}
+    {% endif %}
+    </div>
+
+   {# {% for laListe in touteLaListe %}
+        <div><a href="{{ path('wish_detail', {'id' : laListe.id}) }}">{{ laListe.title }} </a></div>
+    {% endfor %}#}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Bienvenue
+{% endblock %}
+
+{% block body %}
+    <p> Page d'accueil</p>
+
+    {{ form_start(monFormulaire) }}
+    {{ form_widget(monFormulaire) }}
+    <button>Envoyer</button>
+    {{ form_end(monFormulaire) }}
+
+
+    {# {% if chiensVegetariens %}
+        {% for chien in chiensVegetariens %}
+            <p>{{ chien.nom }} - {{ chien.race }} - {{ chien.nbDePattes }}</p>
+        {% endfor %}
+    {% endif %} #}
+    {# {% if unAnimal %}
+    <p>{{ unAnimal.nom }}</p>
+    {% endif %} #}
+    {#
+    {% for chaqueAnimal in tousLesAnimaux %}
+        <p>{{ chaqueAnimal.id }} - {{ chaqueAnimal.nom }}</p>
+    {% endfor %} #}
+{% endblock %}
