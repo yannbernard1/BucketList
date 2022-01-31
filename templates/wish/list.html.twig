@@ -7,17 +7,17 @@
 {% block bodyList %}
 
     <div>
-    {% if touteLaListe %}
-        {% for laListe in touteLaListe %}
+        {% if touteLaListe %}
+            {% for laListe in touteLaListe %}
                 <a href="{{ path('wish_detail', {'id': laListe.id}) }}">
-                    {{ laListe.title }} - {{ laListe.dateCreated | date("d-m-Y H:i") }}
+                    {{ laListe.title }} - {{ laListe.dateCreated | date("d-m-Y H:i") }} - {{ laListe.categories }}
                 </a>
-            <br>
-        {% endfor %}
-    {% endif %}
+                <br>
+            {% endfor %}
+        {% endif %}
     </div>
 
-   {# {% for laListe in touteLaListe %}
+    {# {% for laListe in touteLaListe %}
         <div><a href="{{ path('wish_detail', {'id' : laListe.id}) }}">{{ laListe.title }} </a></div>
-    {% endfor %}#}
+    {% endfor %} #}
 {% endblock %}
