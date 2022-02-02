@@ -20,6 +20,15 @@
             <li><a class="entete" href="{{ path('about_page') }}">About us</a></li>
             <li><a class="entete" href="{{ path('wish_form') }}">Ajouts d'idées</a></li>
             <li><a class="entete" href="{{ path('wish_list') }}">Liste des idées</a></li>
+            {% if not app.user %}
+                <li><a class="entete" href="{{ path('app_login') }}">Connection</a></li>
+                <li><a class="entete" href="{{ path('app_register') }}">Register</a></li>
+            {% endif %}
+            {% if app.user %}
+                <li>
+                    {{ app.user.userIdentifier }} <a href="{{ path('app_logout') }}">Déconnection</a>
+                </li>
+            {% endif %}
 
         </ul>
     </nav>

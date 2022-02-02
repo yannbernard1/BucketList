@@ -18,7 +18,7 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'categories', targetEntity: wish::class)]
+    #[ORM\OneToMany(mappedBy: 'categories', targetEntity: Wish::class)]
     private $Wish;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Wish::class)]

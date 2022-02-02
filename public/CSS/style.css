@@ -32,6 +32,7 @@ header nav, ul, li {
     list-style-type: none;
     font-family: Candara;
     color: black;
+    
 }
 
 .entete {
@@ -43,7 +44,7 @@ header nav, ul, li {
 
 
 .test {
-    margin-top: 130px;
+    margin-top: 200px;
     margin-left: 100px;
     font-family: "Kristen ITC";
     font-size: 24px;

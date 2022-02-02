@@ -6,8 +6,10 @@ namespace App\Controller;
 use App\Entity\Wish;
 use App\Form\WishType;
 use App\Repository\WishRepository;
+use App\Services\Censurator;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,8 +43,11 @@ class WishController extends AbstractController
         );
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/form', name: '_form')]
+    //#[Route('/form', name: '_form')]
     public function form(
+        Censurator             $censurator,
         Request                $request,
         EntityManagerInterface $entityManager
     ): Response
@@ -50,11 +55,18 @@ class WishController extends AbstractController
 
 
         $wish = new Wish();
+        $wish->setAuthor($this->getUser()->getUserIdentifier());
         $monFormulaireIdee = $this->createForm(WishType::class, $wish);
 
         $monFormulaireIdee->handleRequest($request);
         $wish->setIsPublished('true');
         $wish->setDateCreated(new \DateTime());
+
+        $changePhrase = $censurator->purify($wish->getDescription());
+        $changeAuthor = $censurator->purify($wish->getAuthor());
+        $wish->setDescription($changePhrase);
+        $wish->setAuthor($changeAuthor);
+
         if ($monFormulaireIdee->isSubmitted()
             && $monFormulaireIdee->isValid()
         ) {
